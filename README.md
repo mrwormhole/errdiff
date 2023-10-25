@@ -8,8 +8,13 @@
 [![Coverage Status](https://coveralls.io/repos/github/mrwormhole/errdiff/badge.svg?branch=master)](https://coveralls.io/github/mrwormhole/errdiff?branch=master)
 
 This is a fork of h-fam/errdiff, this is created in order to achieve type-safety and better Check() method that can understand wrapped/contained errors.
-In the process of doing so, I have removed interface{} argument that is passed to Check() method. 
-Also cleaned up deprecated grpc status code pkgs.
+In the process of doing so, I have removed interface{} argument that is passed to Check() method. Also cleaned up deprecated grpc status code pkgs and made diffs more consistent.
+
+# Moral
+
+- Avoid using `interface{} or any` for test tables which creates havoc on test readability and maintenance. Use statically typed test methods with statically typed table tests to reduce the mental burden.
+- Consistent error diff reporting with `=` and `:` and `,` distinguished.
+- Single purpose for a single function, no generic test funcs
 
 # Usage
 
