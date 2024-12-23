@@ -25,7 +25,6 @@ linters:
     - staticcheck
     - gosec
     - bodyclose
-    - exportloopref
     - ineffassign
     - errcheck
     - typecheck
