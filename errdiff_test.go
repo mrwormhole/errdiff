@@ -109,22 +109,22 @@ func TestText(t *testing.T) {
 			name:       "message no match",
 			got:        errors.New("ab"),
 			want:       "abc",
-			wantResult: "got err=ab, want err=abc"},
+			wantResult: "got err=ab, want text=abc"},
 		{
 			name:       "want nil",
 			got:        errors.New("ab"),
-			wantResult: "got err=ab, want err=nil",
+			wantResult: "got err=ab, want text=''",
 		},
 		{
 			name:       "want nil got message",
 			got:        errors.New(""),
-			wantResult: "got err=, want err=nil",
+			wantResult: "got err=, want text=''",
 		},
 		{
 			name:       "want is non-nil but got is nil",
 			got:        nil,
 			want:       "efg",
-			wantResult: "got err=nil, want err=efg",
+			wantResult: "got err=nil, want text=efg",
 		},
 	}
 	for _, tt := range tests {
@@ -145,6 +145,11 @@ func TestCode(t *testing.T) {
 	}{
 		{
 			name: "empty message",
+		},
+		{
+			name:       "want nil got message",
+			got:        errors.New(""),
+			wantResult: "got err=, want code=OK",
 		},
 		{
 			name: "unimplemented match",

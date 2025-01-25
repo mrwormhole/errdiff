@@ -23,7 +23,7 @@
 //	 t.Run(tt.name, func(t *testing.T) {
 //	   got, err := fn(...)
 //	   if diff := errdiff.Check(err, tt.wantErr); diff != "" {
-//	     t.Errorf("fn() %s", diff)
+//	     t.Errorf("fn(): err diff=\n%s", diff)
 //	   }
 //	 })
 //	}
@@ -61,15 +61,15 @@ func Text(got error, want string) string {
 		return ""
 	}
 	if want == "" && got != nil {
-		return fmt.Sprintf("got err=%s, want err=nil", got.Error())
+		return fmt.Sprintf("got err=%s, want text=''", got.Error())
 	}
 	if want != "" && got == nil {
-		return fmt.Sprintf("got err=nil, want err=%s", want)
+		return fmt.Sprintf("got err=nil, want text=%s", want)
 	}
 	if got.Error() == want {
 		return ""
 	}
-	return fmt.Sprintf("got err=%s, want err=%s", got.Error(), want)
+	return fmt.Sprintf("got err=%s, want text=%s", got.Error(), want)
 }
 
 // Code returns a message describing the difference between the error's code
@@ -79,7 +79,7 @@ func Code(got error, want codes.Code) string {
 		return ""
 	}
 	if want == codes.OK && got != nil {
-		return fmt.Sprintf("got err=%s, want code=%s", got.Error(), want.String())
+		return fmt.Sprintf("got err=%s, want code=OK", got.Error())
 	}
 	if want != codes.OK && got == nil {
 		return fmt.Sprintf("got err=nil, want code=%s", want.String())
