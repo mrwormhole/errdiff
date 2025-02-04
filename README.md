@@ -16,6 +16,14 @@ Errdiff is the coffee mate of [go-cmp](https://github.com/google/go-cmp) for dif
 > [!IMPORTANT]  
 > This fork is not backward compatible with the original h-fam/errdiff.
 
+> [!NOTE]
+> go-cmp can now check contained/wrapped semantic errors like below via `cmpopts.EquateErrors()`
+> ```
+>if !cmp.Equal(err, tt.wantErr, cmpopts.EquateErrors()) {
+>	  t.Errorf("AccountTransfer(): got error=%v, want err=%v", err, tt.wantErr)
+>}
+> ```
+
 # Moral
 
 - Avoid using `interface{} or any` for test tables which creates havoc on test readability and maintenance. Use statically typed test methods with statically typed table tests to reduce the mental burden.
